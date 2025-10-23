@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body class="layout-page">
     <!-- Navbar will be loaded here -->
     <div id="navbar-placeholder"></div>
 
@@ -71,6 +71,7 @@
         </div>
     </div>
 
+    <div id="footer-placeholder"></div>
 
 
     <!-- Bootstrap JS -->
@@ -86,7 +87,16 @@
             .catch(err => console.error('Navbar load failed:', err));
     </script>
 
-
+    <!-- Footer -->
+    <script>
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+                document.body.classList.add('page-loaded'); // ✅ ensures footer styling applies after load
+            })
+            .catch(err => console.error('Footer load failed:', err));
+    </script>
 </body>
 
 </html>

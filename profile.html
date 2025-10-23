@@ -14,7 +14,7 @@
 
     <!-- ✅ Optional Font for cleaner look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="earner.css">
 
 </head>
 
@@ -105,6 +105,8 @@
         </div>
     </div>
 
+    <div id="footer-placeholder"></div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -117,7 +119,16 @@
             })
             .catch(err => console.error('Navbar load failed:', err));
     </script>
-
+    <!-- Footer -->
+    <script>
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+                document.body.classList.add('page-loaded'); // ✅ ensures footer styling applies after load
+            })
+            .catch(err => console.error('Footer load failed:', err));
+    </script>
 
 
 </body>

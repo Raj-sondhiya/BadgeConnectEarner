@@ -83,3 +83,39 @@ a:hover {
     object-fit: contain;
     cursor: pointer;
 }
+
+
+/* Footer Styles */
+
+.layout-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* main expands to fill space above footer */
+.layout-page main {
+    flex: 1;
+}
+
+.footer {
+    border-top: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 12px 0;
+    color: #6c757d;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-top: auto;
+}
+
+.footer p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.footer.shadow-sm {
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
