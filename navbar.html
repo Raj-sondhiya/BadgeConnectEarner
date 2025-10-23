@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-2">
+    <div class="container-fluid px-4">
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold text-info d-flex align-items-center" href="earnerHome.html">
+            <i class="fa-solid fa-certificate text-info fs-4 me-2"></i>
+            <span>BadgeConnect</span>
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#earnerNavbar"
+            aria-controls="earnerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="profile.html">
+                        <i class="fa-solid fa-user text-info"></i> Profile
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="badgesList.html">
+                        <i class="fa-solid fa-ribbon text-info"></i> Badges
+                    </a>
+                </li>
+
+                <!-- Search Box -->
+                <li class="nav-item d-flex align-items-center mx-2">
+                    <input type="text" class="form-control form-control-sm me-1" placeholder="Search" name="search"
+                        style="max-width: 160px;" />
+                    <button class="btn btn-outline-info btn-sm">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </li>
+
+                <!-- Logout -->
+                <li class="nav-item mx-2">
+                    <button id="logoutBtn" class="btn btn-outline-danger btn-sm fw-semibold"
+                        onclick="window.location.href = 'earnerLogin.html'">
+                        <i class="fa-solid fa-right-from-bracket me-1"></i> Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

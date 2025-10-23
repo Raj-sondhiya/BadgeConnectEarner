@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earner Login | BadgeConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="earner.css">
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-sm border-0 p-4 text-center" style="max-width: 400px; width: 100%;">
+            <div class="mb-3">
+                <div class="mx-auto rounded-circle d-flex align-items-center justify-content-center bg-info"
+                    style="width: 80px; height: 80px;">
+                    <div><i class="fa fa-certificate" style="font-size: 50px; color: white;" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="fw-bold mb-1">Welcome to BadgeConnect Earner Login</h4>
+            <p id="form-subtitle" class="text-muted small m-2">Sign in to continue</p>
+            <p id="form-desc" class="text-muted mb-4">Please enter your login credentials</p>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="mb-3 text-start">
+                    <label for="profileId" class="fw-semibold">Profile ID</label>
+                    <input type="text" class="form-control" id="profileId" placeholder="Please enter profile id"
+                        required>
+                </div>
+
+                <div class="mb-3 text-start">
+                    <label for="email" class="fw-semibold">Email or phone</label>
+                    <input type="text" class="form-control" id="email" placeholder="Enter your email or phone..."
+                        required>
+                </div>
+
+                <button type="submit" id="sendOtpBtn" class="btn btn-info w-100 text-white fw-semibold mt-3">Send
+                    OTP</button>
+            </form>
+
+            <!-- OTP Verification Form (Initially Hidden) -->
+            <form id="otpForm" class="d-none">
+                <div class="mb-3 text-start">
+                    <label for="verifyProfileId" class="form-label fw-semibold">Profile ID</label>
+                    <input type="text" class="form-control" id="verifyProfileId" readonly>
+                </div>
+
+                <div class="mb-3 text-start">
+                    <label for="verifyEmail" class="form-label fw-semibold">Email address</label>
+                    <input type="email" class="form-control" id="verifyEmail" readonly>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                    <input type="text" maxlength="1" class="form-control text-center otp-input mx-1">
+                    <input type="text" maxlength="1" class="form-control text-center otp-input mx-1">
+                    <input type="text" maxlength="1" class="form-control text-center otp-input mx-1">
+                    <input type="text" maxlength="1" class="form-control text-center otp-input mx-1">
+                    <input type="text" maxlength="1" class="form-control text-center otp-input mx-1">
+                    <input type="text" maxlength="1" class="form-control text-center otp-input mx-1">
+                </div>
+
+                <p class="small text-muted mb-1">
+                    Didn’t get the code?
+                    <span id="resendLink" class="text-primary fw-semibold"
+                        style="cursor:pointer; pointer-events:none; opacity:0.6;">
+                        Click to resend
+                    </span>
+                </p>
+                <p class="small text-secondary mb-3">Resend in <span id="timer">01:00</span></p>
+
+                <button type="submit" class="btn btn-info w-100 text-white fw-semibold">Login</button>
+                <button type="button" class="btn btn-secondary w-100 mt-2"
+                    onclick="window.location.href='index.html'">Cancel</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="earner.js"></script>
+</body>
+
+</html>
