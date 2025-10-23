@@ -64,11 +64,9 @@ a:hover {
 
 /* Badge card styling */
 .badge-card {
-    background: #ffffff;
+    background: #00C8FF;
     border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 15px;
-    width: 140px;
+    width: 180px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
