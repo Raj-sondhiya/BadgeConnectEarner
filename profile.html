@@ -18,96 +18,100 @@
 
 </head>
 
-<body>
+<body class="layout-page">
     <!-- Navbar will be loaded here -->
     <div id="navbar-placeholder"></div>
+    <main>
+        <div class="container my-3">
+            <div class="card border-0 shadow-sm p-4 rounded-4">
+                <h5 class="fw-bold mb-4 text-secondary">Profile</h5>
 
-    <div class="container my-3">
-        <div class="card border-0 shadow-sm p-4 rounded-4">
-            <h5 class="fw-bold mb-4 text-secondary">Profile</h5>
+                <div class="row g-4 align-items-start">
+                    <!-- Left: Avatar + Badges -->
+                    <div class="col-md-4 text-center border-end">
+                        <div class="position-relative d-inline-block">
+                            <img id="profileAvatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                alt="Profile Avatar" class="rounded-circle mb-3" width="120"
+                                style="cursor:pointer; object-fit:cover;">
 
-            <div class="row g-4 align-items-start">
-                <!-- Left: Avatar + Badges -->
-                <div class="col-md-4 text-center border-end">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Avatar"
-                        class="rounded-circle mb-3" width="120">
+                            <!-- Small camera/edit icon -->
+                            <span id="editAvatarIcon"
+                                class="position-absolute d-flex justify-content-center align-items-center bg-info text-white rounded-circle border border-2 border-white"
+                                style="width:32px; height:32px; cursor:pointer; right:0px; bottom:15px;">
+                                <i class="fa fa-camera small"></i>
+                            </span>
 
-                    <h5 class="text-info fw-bold mb-1">Ramraj Panwar
-                        <i class="fa fa-pen ms-1 text-info small" style="cursor:pointer;"></i>
-                    </h5>
-                    <p class="text-muted small mb-4">Earner Since : <span class="fw-semibold">10/08T10:50:11/2025</span>
-                    </p>
-                    <div class="badge-card p-3 rounded-3 ">
-                        <div class="d-flex flex-column align-items-start">
-                            <i class="fa-solid fa-award fa-lg text-white mb-2"></i>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="text-white fw-semibold">Total Badges</span>
-                                <h4 class="text-white fw-bold mb-0 align-items-end">3</h4>
+                        </div>
+
+                        <!-- Hidden file input -->
+                        <input type="file" id="avatarInput" accept="image/*" class="d-none">
+
+                        <h5 class="text-info fw-bold mb-1">Ramraj Panwar</h5>
+                        <p class="text-muted small mb-4">Earner Since :
+                            <span class="fw-semibold">10/08T10:50:11/2025</span>
+                        </p>
+                        <div class="badge-card p-3 rounded-3 ms-5">
+                            <div class="d-flex flex-column align-items-start">
+                                <i class="fa-solid fa-award fa-lg text-white mb-2"></i>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="text-white fw-semibold">Total Badges</span>
+                                    <h4 class="text-white fw-bold mb-0 align-items-end">3</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
 
 
+                    <!-- Right: Personal Info -->
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="fw-bold mb-0">Personal Information</h6>
+                        </div>
 
-                </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">First Name</div>
+                            <div class="col-sm-7">Ramraj <i class="fa fa-circle-question text-info small"></i></div>
+                        </div>
 
-                <!-- Right: Personal Info -->
-                <div class="col-md-8">
-                    <div class="d-flex align-items-center mb-3">
-                        <h6 class="fw-bold mb-0">Personal Information</h6>
-                        <button class="btn btn-info btn-sm ms-2 rounded-circle">
-                            <i class="fa fa-pen text-white small"></i>
-                        </button>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Last Name</div>
+                            <div class="col-sm-7">Panwar <i class="fa fa-circle-question text-info small"></i></div>
+                        </div>
 
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">First Name</div>
-                        <div class="col-sm-7">Ramraj <i class="fa fa-circle-question text-info small"></i></div>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Phone Number & Ext</div>
+                            <div class="col-sm-7">+91</div>
+                        </div>
 
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Last Name</div>
-                        <div class="col-sm-7">Panwar <i class="fa fa-circle-question text-info small"></i></div>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Mobile</div>
+                            <div class="col-sm-7">8770402398</div>
+                        </div>
 
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Phone Number & Ext</div>
-                        <div class="col-sm-7">+91</div>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Primary Email</div>
+                            <div class="col-sm-7">ramrajpanwar9603@gmail.com</div>
+                        </div>
 
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Mobile</div>
-                        <div class="col-sm-7">8770402398</div>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Alternate Email</div>
+                            <div class="col-sm-7"><a href="#" class="text-info fw-semibold">Click To Add</a></div>
+                        </div>
 
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Primary Email</div>
-                        <div class="col-sm-7">ramrajpanwar9603@gmail.com</div>
-                    </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Company</div>
+                            <div class="col-sm-7">Cloudstry Tech</div>
+                        </div>
 
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Alternate Email</div>
-                        <div class="col-sm-7"><a href="#" class="text-info fw-semibold">Click To Add</a></div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Password</div>
-                        <div class="col-sm-7"><a href="#" class="text-info fw-semibold">Change Password</a></div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Company</div>
-                        <div class="col-sm-7">Cloudstry Tech</div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col-sm-5 fw-semibold">Title</div>
-                        <div class="col-sm-7">—</div>
+                        <div class="row mb-2">
+                            <div class="col-sm-5 fw-semibold">Title</div>
+                            <div class="col-sm-7">—</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <div id="footer-placeholder"></div>
 
@@ -132,6 +136,33 @@
                 document.body.classList.add('page-loaded'); // ✅ ensures footer styling applies after load
             })
             .catch(err => console.error('Footer load failed:', err));
+    </script>
+
+    <script>
+        const avatar = document.getElementById("profileAvatar");
+        const avatarInput = document.getElementById("avatarInput");
+        const editIcon = document.getElementById("editAvatarIcon");
+
+        // ✅ When clicking avatar or camera icon, open file picker
+        avatar.addEventListener("click", () => avatarInput.click());
+        editIcon.addEventListener("click", () => avatarInput.click());
+
+        // ✅ Show preview instantly + store locally
+        avatarInput.addEventListener("change", () => {
+            const file = avatarInput.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                avatar.src = reader.result;
+                localStorage.setItem("earnerAvatar", reader.result);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // ✅ Load saved avatar if exists
+        const savedAvatar = localStorage.getItem("earnerAvatar");
+        if (savedAvatar) avatar.src = savedAvatar;
     </script>
 
 

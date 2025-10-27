@@ -107,3 +107,5 @@ otpForm.addEventListener("submit", function (e) {
         otpInputs[0].focus();
     }
 });
+
+
