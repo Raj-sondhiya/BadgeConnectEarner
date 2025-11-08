@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.worker.min.js";
+    const BACKEND_URL = "https://badge-connect-issuer-backend.onrender.com";
 
     async function getSessionID() {
         const xmlBody = `
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <authenticationKey>5HGdHz60U31Bj0bKVhkv</authenticationKey>
         </xmlrequest>`;
 
-        const response = await fetch("https://badge-connect-issuer-backend.onrender.com/api/badgecert", {
+        const response = await fetch(`${BACKEND_URL}/api/badgecert`, {
             method: "POST",
             headers: { "Content-Type": "application/xml" },
             body: xmlBody
@@ -17,10 +17,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const text = await response.text();
         const match = text.match(/<ResponseCode>(.*?)<\/ResponseCode>/);
-
         if (!match) throw new Error("Failed to fetch session ID");
-
-        return match[1]; // ResponseCode IS the sessionID
+        return match[1];
     }
 
     async function getBadges(sessionID) {
@@ -31,48 +29,43 @@ document.addEventListener("DOMContentLoaded", async () => {
             <earneremail>ramrajpanwar9603@gmail.com</earneremail>
         </xmlrequest>`;
 
-        const response = await fetch("https://badge-connect-issuer-backend.onrender.com/api/badgecert", {
+        const response = await fetch(`${BACKEND_URL}/api/badgecert`, {
             method: "POST",
             headers: { "Content-Type": "application/xml" },
             body: xmlBody
         });
 
-
         const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-        console.log(xmlDoc);
-
-        // The repeated nodes you want:
+        const xmlDoc = new DOMParser().parseFromString(xmlText, "text/xml");
         const nodes = xmlDoc.getElementsByTagName("issuedbadgecert");
 
-        const badges = [...nodes].map(b => ({
-            issuanceId: b.querySelector("issuanceid")?.textContent || "",
-            badgeId: b.querySelector("badgeid")?.textContent || "",
-            name: b.querySelector("badgename")?.textContent || "",
-            image: b.querySelector("badgeartifact1")?.textContent || "",
-            issuedDate: b.querySelector("issuedate")?.textContent || "",
-            certificatePdf: b.querySelector("certificatepdf")?.textContent || ""
-        }));
-
-        return badges;
+        return [...nodes].map(b => {
+            const badgeId = b.querySelector("badgeid")?.textContent || "";
+            return {
+                issuanceId: b.querySelector("issuanceid")?.textContent || "",
+                badgeId,
+                name: b.querySelector("badgename")?.textContent || "",
+                issuedDate: b.querySelector("issuedate")?.textContent || "",
+                image: `${BACKEND_URL}/api/badge-image/${badgeId}`
+            };
+        });
     }
-
-
     function renderBadges(badges) {
         const container = document.getElementById("badgeList");
         container.innerHTML = "";
 
         badges.forEach(badge => {
-            const div = document.createElement("div");
-            div.classList.add("badge-row");
+            const row = document.createElement("div");
+            row.className = "badge-row";
 
-            div.innerHTML = `
+            const imgUrl = `${BACKEND_URL}/api/badge-image/${badge.badgeId}`;
+
+            row.innerHTML = `
             <input type="checkbox" class="cert-checkbox" data-id="${badge.issuanceId}">
-
+            
             <div class="badge-img-box">
-                <canvas class="badge-preview" data-pdf="${badge.certificatePdf}"></canvas>
-            </div>  
+                <img src="${imgUrl}" alt="${badge.name}" class="badge-img">
+            </div>
 
             <div class="badge-info">
                 <span class="badge-title">${badge.name}</span>
@@ -83,63 +76,35 @@ document.addEventListener("DOMContentLoaded", async () => {
             <a class="pay-link" data-id="${badge.issuanceId}">Pay</a>
         `;
 
-            container.appendChild(div);
+            container.appendChild(row);
+
+            // ✅ Log when image loads
+            const img = row.querySelector(".badge-img");
+            img.onload = () => console.log("✅ Badge Image Loaded:", imgUrl);
+            img.onerror = () => console.error("❌ Badge Image Failed:", imgUrl);
         });
     }
-
-    function renderPdfThumbnails() {
-        const canvases = document.querySelectorAll(".badge-preview");
-
-        canvases.forEach(canvas => {
-            const pdfUrl = canvas.dataset.pdf;
-            const loadingTask = pdfjsLib.getDocument(pdfUrl);
-
-            loadingTask.promise.then(pdf => {
-                pdf.getPage(1).then(page => {
-                    const viewport = page.getViewport({ scale: 0.5 });
-                    const context = canvas.getContext("2d");
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    page.render({ canvasContext: context, viewport: viewport });
-                });
-            }).catch(err => {
-                console.error("PDF render failed:", err);
-            });
-        });
-    }
-
-
 
 
     function setupBulkPaymentHandler() {
         document.getElementById("paySelectedBtn").onclick = () => {
-            const selected = [...document.querySelectorAll(".cert-checkbox:checked")]
-                .map(cb => cb.dataset.issuanceid);
+            const selected = [...document.querySelectorAll(".cert-checkbox:checked")].map(cb => cb.dataset.id);
 
-            if (selected.length === 0) {
-                alert("Select at least one badge to pay.");
-                return;
-            }
+            if (selected.length === 0) return alert("Select at least one badge to pay.");
 
-            console.log("Send these issuanceIds to your payment API:", selected);
+            console.log("Selected for payment:", selected);
+            // Redirect to payment screen here
         };
     }
-
 
     async function init() {
         const sessionID = await getSessionID();
         const badges = await getBadges(sessionID);
 
-
-        console.log("Fetched badges:", badges);
-
-        // Save to localStorage
         localStorage.setItem("earner_badges", JSON.stringify(badges));
         renderBadges(badges);
-        renderPdfThumbnails();
-        setupBulkPaymentHandler()
+        setupBulkPaymentHandler();
     }
 
     init();
-
 });
