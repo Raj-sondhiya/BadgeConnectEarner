@@ -16,60 +16,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="earner.css">
 
+
+
 </head>
 
 <body class="layout-page">
     <!-- Navbar will be loaded here -->
     <div id="navbar-placeholder"></div>
+    <main>
 
-    <div class="container my-3">
-        <div class="card shadow-sm rounded-3 border-0 p-4">
-            <h4 class="fw-bold text-secondary mb-3">Badges</h4>
-            <p class="text-muted small mb-4">
-                Select one or more certificates below to make payment.
-            </p>
+        <div class="container my-3">
+            <div class="card shadow-sm rounded-3 border-0 p-4">
+                <h4 class="fw-bold text-secondary mb-3">Badges</h4>
+                <p class="text-muted small mb-4">
+                    Select one or more certificates below to make payment.
+                </p>
 
-            <!-- Certificate List -->
-            <div id="certificateList" class="list-group">
-                <div class="certificate-item">
-                    <input type="checkbox" class="cert-checkbox" data-name="Certified Java Core">
-                    <span class="certificate-name">Certified Java Core</span>
-                    <a href="#" class="pay-link">Pay</a>
+                <!-- Certificate List -->
+                <div id="badgeList" class="container mt-3"></div>
+
+                <!-- Pay for Selected -->
+                <div class="text-end mt-4">
+                    <button id="paySelectedBtn" class="btn btn-primary text-white fw-semibold px-4">
+                        Pay for Selected
+                    </button>
                 </div>
-
-                <div class="certificate-item">
-                    <input type="checkbox" class="cert-checkbox" data-name="Certified Web Development">
-                    <span class="certificate-name">Certified Web Development</span>
-                    <a href="#" class="pay-link">Pay</a>
-                </div>
-
-                <div class="certificate-item">
-                    <input type="checkbox" class="cert-checkbox" data-name="Certified Database Expert">
-                    <span class="certificate-name">Certified Database Expert</span>
-                    <a href="#" class="pay-link">Pay</a>
-                </div>
-
-                <div class="certificate-item">
-                    <input type="checkbox" class="cert-checkbox" data-name="Certified UI/UX Designer">
-                    <span class="certificate-name">Certified UI/UX Designer</span>
-                    <a href="#" class="pay-link">Pay</a>
-                </div>
-
-                <div class="certificate-item">
-                    <input type="checkbox" class="cert-checkbox" data-name="Certified Spring Boot Developer">
-                    <span class="certificate-name">Certified Spring Boot Developer</span>
-                    <a href="#" class="pay-link">Pay</a>
-                </div>
-            </div>
-
-            <!-- Pay for Selected -->
-            <div class="text-end mt-4">
-                <button id="paySelectedBtn" class="btn btn-info text-white fw-semibold px-4">
-                    Pay for Selected
-                </button>
             </div>
         </div>
-    </div>
+    </main>
 
     <div id="footer-placeholder"></div>
 
@@ -86,6 +60,9 @@
             })
             .catch(err => console.error('Navbar load failed:', err));
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.worker.min.js"></script>
+    <script src="earnerHome.js"></script>
 
     <!-- Footer -->
     <script>
