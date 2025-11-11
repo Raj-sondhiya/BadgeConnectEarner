@@ -19,9 +19,15 @@ body {
     background: #fff;
 }
 
+.cert-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
 .badge-img-box {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +45,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 3px;
+    padding-left: 18px;
 }
 
 .badge-title {
@@ -51,7 +58,7 @@ body {
 }
 
 .pay-link {
-    text-decoration: underline;
+    font-size: 22px;
     cursor: pointer;
     font-weight: 500;
     color: #0d6efd;
@@ -95,6 +102,65 @@ body {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
 }
 
+/* ========== Badge List CSS ========== */
+
+.badge-card {
+    width: 140px;
+    /* fixed width */
+    height: 180px;
+    /* fixed height */
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Image should not stretch or crop weirdly */
+.badge-card .badge-image {
+    width: 100%;
+    height: 120px;
+    /* fixed image box */
+    object-fit: contain;
+    /* preserve shape */
+    background-color: #fafafa;
+    /* prevents transparent edges on white */
+    border-radius: 6px;
+}
+
+/* Text label under image */
+.badge-card p {
+    margin: 6px 0 0 0;
+    line-height: 1.2;
+    font-size: 13px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /* max 2 lines */
+    -webkit-box-orient: vertical;
+}
+
+/* Ensure row layout stays on one line unless screen is tiny */
+.d-flex.flex-wrap.gap-4 {
+    display: flex;
+    flex-wrap: nowrap;
+    /* force in one row */
+    gap: 16px;
+    overflow-x: auto;
+    /* add horizontal scroll if screen small */
+    padding-bottom: 6px;
+}
 
 
 /* ========== Tab visuals ========== */
