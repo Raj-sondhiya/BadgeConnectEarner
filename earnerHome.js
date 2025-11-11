@@ -50,39 +50,52 @@ document.addEventListener("DOMContentLoaded", async () => {
             };
         });
     }
-    function renderBadges(badges) {
+
+    function renderBadges(badges, index) {
         const container = document.getElementById("badgeList");
         container.innerHTML = "";
 
-        badges.forEach(badge => {
+        badges.forEach((badge, index) => {
             const row = document.createElement("div");
             row.className = "badge-row";
 
             const imgUrl = `${BACKEND_URL}/api/badge-image/${badge.badgeId}`;
 
             row.innerHTML = `
-            <input type="checkbox" class="cert-checkbox" data-id="${badge.issuanceId}">
-            
-            <div class="badge-img-box">
-                <img src="${imgUrl}" alt="${badge.name}" class="badge-img">
-            </div>
+        <input type="checkbox" class="cert-checkbox" data-id="${badge.badgeId}">
+        <div class="badge-img-box">
+            <img src="${imgUrl}" alt="${badge.name}" class="badge-img">
+        </div>
+        <div class="badge-info">
+            <span class="badge-title">${badge.name}</span>
+            <span class="badge-meta">Badge ID: ${badge.badgeId}</span>
+        </div>
+        <a class="pay-link" data-id="${badge.badgeId}">Pay</a>
+    `;
 
-            <div class="badge-info">
-                <span class="badge-title">${badge.name}</span>
-                <span class="badge-meta">Badge ID: ${badge.badgeId}</span>
-                <span class="badge-meta">Issuance ID: ${badge.issuanceId}</span>
-            </div>
+            // ✅ 1. Remove checkbox & fix layout for first row
+            if (index === 0) {
+                row.querySelector(".cert-checkbox").remove();
+                row.style.gridTemplateColumns = "120px 1fr 80px"; // instead of 40px 120px ...
+            }
 
-            <a class="pay-link" data-id="${badge.issuanceId}">Pay</a>
-        `;
+            // ✅ 2. Light green background on first row
+            if (index === 0) {
+                row.style.backgroundColor = "#dbf9db";
+            }
+
+            // ✅ 3. Change Pay → Paid
+            if (index === 0) {
+                const payLink = row.querySelector(".pay-link");
+                payLink.textContent = "Paid";
+                payLink.classList.add("pay-tag");
+            }
+
 
             container.appendChild(row);
-
-            // ✅ Log when image loads
-            const img = row.querySelector(".badge-img");
-            img.onload = () => console.log("✅ Badge Image Loaded:", imgUrl);
-            img.onerror = () => console.error("❌ Badge Image Failed:", imgUrl);
         });
+
+
     }
 
 

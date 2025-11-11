@@ -26,8 +26,8 @@ body {
 }
 
 .badge-img-box {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +63,21 @@ body {
     font-weight: 500;
     color: #0d6efd;
 }
+
+.pay-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #0e0e0e;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: transparent;
+    font-weight: 600;
+    color: #1ceb68;
+    text-decoration: none;
+    cursor: default;
+}
+
 
 
 
@@ -179,6 +194,13 @@ body {
 
 .tab-pane {
     padding-top: 6px;
+}
+
+/* ========== Earner profile css ========== */
+
+.all-badge-details {
+    background-color: #17c0eb;
+    width: 170px;
 }
 
 /* Small helper to not change layout of other pages */
