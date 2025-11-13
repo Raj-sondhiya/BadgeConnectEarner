@@ -40,7 +40,6 @@
                                 style="width:32px; height:32px; cursor:pointer; right:0px; bottom:15px;">
                                 <i class="fa fa-camera small"></i>
                             </span>
-
                         </div>
 
                         <!-- Hidden file input -->
@@ -70,18 +69,23 @@
 
                         <div class="row mb-2">
                             <div class="col-sm-5 fw-semibold">First Name</div>
-                            <div class="col-sm-7">Ramraj <i class="fa fa-circle-question text-info small"></i></div>
+                            <div class="col-sm-7">
+                                Ramraj
+                                <i class="fa fa-circle-question text-info small" data-bs-toggle="tooltip"
+                                    data-bs-placement="right"
+                                    title="Contact the Issuing Organization to make name changes"></i>
+                            </div>
                         </div>
 
                         <div class="row mb-2">
                             <div class="col-sm-5 fw-semibold">Last Name</div>
-                            <div class="col-sm-7">Panwar <i class="fa fa-circle-question text-info small"></i></div>
+                            <div class="col-sm-7">Panwar
+                                <i class="fa fa-circle-question text-info small" data-bs-toggle="tooltip"
+                                    data-bs-placement="right"
+                                    title=" Contact the Issuing Organization to make name changes"></i>
+                            </div>
                         </div>
 
-                        <div class="row mb-2">
-                            <div class="col-sm-5 fw-semibold">Phone Number & Ext</div>
-                            <div class="col-sm-7">+91</div>
-                        </div>
 
                         <div class="row mb-2">
                             <div class="col-sm-5 fw-semibold">Mobile</div>
@@ -95,7 +99,11 @@
 
                         <div class="row mb-2">
                             <div class="col-sm-5 fw-semibold">Alternate Email</div>
-                            <div class="col-sm-7"><a href="#" class="text-info fw-semibold">Click To Add</a></div>
+                            <div class="col-sm-7">
+                                <span id="alternateEmailSection">
+                                    <a href="#" id="openAlternateModal" class="text-info fw-semibold">Click To Add</a>
+                                </span>
+                            </div>
                         </div>
 
                         <div class="row mb-2">
@@ -104,13 +112,39 @@
                         </div>
 
                         <div class="row mb-2">
-                            <div class="col-sm-5 fw-semibold">Title</div>
-                            <div class="col-sm-7">—</div>
+                            <div class="col-sm-5 fw-semibold">Designation</div>
+                            <div class="col-sm-7">Technical Analyst</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Alternate Email Modal -->
+        <div class="modal fade" id="alternateEmailModal" tabindex="-1">
+            <div class="modal-dialog modal-md modal-dialog-centered">
+                <div class="modal-content rounded-4 shadow">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">Alternate Email Address</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- Input + Add -->
+                        <div class="d-flex gap-2 mb-2">
+                            <input type="email" id="alternateEmailInput" class="form-control"
+                                placeholder="Enter Alternate Email Address">
+                            <button class="btn btn-info text-white fw-semibold" id="addAlternateEmailBtn">
+                                Add <i class="fa fa-plus ms-1"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">This email will be added to your profile.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <div id="footer-placeholder"></div>
@@ -138,32 +172,7 @@
             .catch(err => console.error('Footer load failed:', err));
     </script>
 
-    <script>
-        const avatar = document.getElementById("profileAvatar");
-        const avatarInput = document.getElementById("avatarInput");
-        const editIcon = document.getElementById("editAvatarIcon");
-
-        // ✅ When clicking avatar or camera icon, open file picker
-        avatar.addEventListener("click", () => avatarInput.click());
-        editIcon.addEventListener("click", () => avatarInput.click());
-
-        // ✅ Show preview instantly + store locally
-        avatarInput.addEventListener("change", () => {
-            const file = avatarInput.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = () => {
-                avatar.src = reader.result;
-                localStorage.setItem("earnerAvatar", reader.result);
-            };
-            reader.readAsDataURL(file);
-        });
-
-        // ✅ Load saved avatar if exists
-        const savedAvatar = localStorage.getItem("earnerAvatar");
-        if (savedAvatar) avatar.src = savedAvatar;
-    </script>
+    <script src="profile.js"></script>
 
 
 </body>
